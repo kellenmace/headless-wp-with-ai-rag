@@ -1,0 +1,46 @@
+{
+	"name": "headless-wp-ai",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check . && eslint .",
+		"generateSvelteDocs": "curl -o llm-docs/svelte-docs-full.txt https://svelte.dev/llms-full.txt",
+		"generateWPGraphQLDocs": "curl -L https://github.com/wp-graphql/wp-graphql/archive/refs/heads/master.zip -o wp-graphql-master.zip && unzip wp-graphql-master.zip 'wp-graphql-master/docs/*' && rm -rf llm-docs/wpgraphql-docs && mkdir -p llm-docs/wpgraphql-docs && mv wp-graphql-master/docs/* llm-docs/wpgraphql-docs/ && rm -rf wp-graphql-master wp-graphql-master.zip",
+		"generateWPGraphQLAcfDocs": "node llm-docs/generate-wpgraphql-acf-docs.js",
+		"generateIntrospectionResult": "bash -c \"curl -X POST -H 'Content-Type: application/json' --data @<(jq -Rs '{query: .}' < llm-docs/introspection-query.graphql) http://headless-wp.local:10009/graphql -o llm-docs/introspection-result.json\"",
+		"generateLLMDocs": "mkdir -p llm-docs && npm run generateSvelteDocs && npm run generateWPGraphQLDocs && npm run generateWPGraphQLAcfDocs && npm run generateIntrospectionResult"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^1.2.5",
+		"@eslint/js": "^9.18.0",
+		"@sveltejs/adapter-auto": "^4.0.0",
+		"@sveltejs/kit": "^2.16.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@tailwindcss/typography": "^0.5.15",
+		"@tailwindcss/vite": "^4.0.0",
+		"eslint": "^9.18.0",
+		"eslint-config-prettier": "^10.0.1",
+		"eslint-plugin-svelte": "^3.0.0",
+		"globals": "^16.0.0",
+		"prettier": "^3.4.2",
+		"prettier-plugin-svelte": "^3.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tailwindcss": "^4.0.0",
+		"typescript": "^5.0.0",
+		"typescript-eslint": "^8.20.0",
+		"vite": "^6.0.0"
+	},
+	"dependencies": {
+		"graphql-request": "^7.1.2"
+	}
+}

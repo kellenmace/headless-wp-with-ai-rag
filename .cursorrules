@@ -1,0 +1,12 @@
+# Project Overview
+
+This is a SvelteKit app that sources data from a http://headless-wp.local headless WordPress site via the http://headless-wp.local/graphql GraphQL endpoint. The headless WordPress site uses the WPGraphQL, Advanced Custom Fields (ACF), and WPGraphQL for ACF plugins.
+
+# Crucial Documentation
+
+Documentation is stored in the `llm-docs` directory. Please review all the contents of that directory thoroughly and use the information to inform your responses.
+
+- The SvelteKit documentation is at `llm-docs/svelte-docs-full.txt`.
+- The WPGraphQL documentation is in the `llm-docs/wpgraphql-docs` directory.
+- The WPGraphQL for ACF documentation is in the `llm-docs/wpgraphql-for-acf` directory.
+- I ran the GraphQL introspection query in `llm-docs/introspection-query.graphql` and saved the result in `llm-docs/introspection-result.json`. By reviewing this, you can understand the GraphQL schema of the headless WordPress site.
