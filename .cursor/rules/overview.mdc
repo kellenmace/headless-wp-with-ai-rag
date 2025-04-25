@@ -1,0 +1,13 @@
+---
+description: Project overview
+alwaysApply: true
+---
+
+This project is a SvelteKit application that sources its data from a headless WordPress site running at http://headless-wp.local. Data is accessed via the site's GraphQL endpoint: http://headless-wp.local/graphql.
+
+The headless WordPress site is configured with the following plugins:
+- WPGraphQL
+- Advanced Custom Fields (ACF)
+- WPGraphQL for ACF
+
+These plugins enable advanced custom data structures in WordPress to be queried from the SvelteKit frontend using GraphQL.
